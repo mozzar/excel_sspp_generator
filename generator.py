@@ -42,6 +42,7 @@ for i in range(additional_columns_size):
     additional_columns.append(input("Podaj kolumne dodatkowa nr [%d]:" % i))
     additional_columns_original_name.append(input("Podaj nazwę która będzie pobierana nr [%d]:" % i))
 
+''' TO DO: generowanie image'a na postawie imie-nazwisko do systemu wyborczego na poszczególne wydziały'''
 
 #pobranie wydziałów
 for i in range(rows):
@@ -95,5 +96,7 @@ for i in range(rows):
         del object
     else:
         continue
+
+
 
 print("Poszło okej! :D ")
