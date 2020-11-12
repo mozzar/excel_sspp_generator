@@ -1,6 +1,6 @@
 import xlrd
 import person
-import os
+
 #dane konfiguracyjne do wypełnienia
 #loc = "kwestionariusz.xlsx"
 #original, column_name from input, index in excel
