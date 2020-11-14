@@ -3,11 +3,14 @@ class Person:
 
     values = []
     href = ""
-    def __init__(self, faculty_short, faculty):
+    name_surname = ""
+    def __init__(self, faculty_short, faculty, vote_url_user):
         self.faculty_short = faculty_short
         self.faculty = faculty
         self.values = []
         self.href = ""
+        self.name_surname = ""
+        self.vote_url_user = vote_url_user
 
 
     def addValues(self, value, original_number):
@@ -17,9 +20,10 @@ class Person:
             self.values.append(str(self.values_format[original_number])+"=\"" + str(value).replace("\"", "'").strip() + "\"")
             if str(self.values_format[original_number]) == "name":
                 self.href = unidecode.unidecode(self.href + str(value).replace("\"", "'").lower().strip())
+                self.name_surname = self.name_surname +str(value).replace("\"", "'")
             elif str(self.values_format[original_number]) == "surname":
                 self.href = unidecode.unidecode(self.href + str(value).replace("\"", "'").lower().strip())
-
+                self.name_surname = self.name_surname + " "+ str(value).replace("\"", "'")
 
     def addValuesFormated(self, value):
         self.values_format = value
@@ -36,9 +40,17 @@ class Person:
         full_data = full_data + "]\n"
         return full_data
 
+    def formatBeforeSaveToVoteFile(self):
+        vote_data = self.name_surname + " " + self.vote_url_user + "-" + self.faculty_short.lower().strip() + "/#" + self.href + "\n"
+        return vote_data;
+
     def savetoFile(self):
         file_open = open(self.faculty_short + ".txt", 'a')
         file_open.write(str(self.formatBeforeSaveToFile()))
+
+    def saveToVoteFile(self):
+        vote_file_open = open(self.faculty_short + "-vote.txt", 'a')
+        vote_file_open.write(str(self.formatBeforeSaveToVoteFile()))
 
     def __del__(self):
         self.faculty_short = None

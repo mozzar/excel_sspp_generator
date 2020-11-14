@@ -8,6 +8,9 @@ faculty_data = ['faculty']
 #nazwa kierunkow na wydzialu typu
 faculty_subject_data = 'subject'
 
+vote_url_user = input("Podaj nazwę głosowania które będzie w urlu np doda do tego -wydzial. (samorzad.put.poznan.pl/wybory-uzupelniajace: ")
+
+
 loc = input("Podaj nazwę pliku .xlsx wraz z rozszerzeniem: ")
 
 wb = xlrd.open_workbook(loc)
@@ -84,7 +87,7 @@ def getShortFaculty(faculty):
 for i in range(rows):
     if i > 0:
         fac = sheet.cell_value(i, int(faculty_data[2]))
-        object = person.Person(getShortFaculty(fac), fac.replace("Wydział", ""))
+        object = person.Person(getShortFaculty(fac), fac.replace("Wydział", ""), vote_url_user)
         object.addValuesFormated(additional_columns_original_name)
         for l in columns_faculty_subject_indexes:
             if sheet.cell_value(i, l) != "":
@@ -93,6 +96,7 @@ for i in range(rows):
 
             object.addValues(sheet.cell_value(i, k), index)
         object.savetoFile()
+        object.saveToVoteFile()
         del object
     else:
         continue
