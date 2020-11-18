@@ -22,7 +22,7 @@ class Person:
                 self.href = unidecode.unidecode(self.href + str(value).replace("\"", "'").lower().strip())
                 self.name_surname = self.name_surname +str(value).replace("\"", "'")
             elif str(self.values_format[original_number]) == "surname":
-                self.href = unidecode.unidecode(self.href + str(value).replace("\"", "'").lower().strip())
+                self.href = unidecode.unidecode(self.href +"_"+ str(value).replace("\"", "'").lower().strip())
                 self.name_surname = self.name_surname + " "+ str(value).replace("\"", "'")
 
     def addValuesFormated(self, value):
@@ -57,3 +57,6 @@ class Person:
         self.faculty = None
         self.values = []
         self.values_format = []
+        self.href = ""
+        self.name_surname = ""
+        self.vote_url_user = ""
