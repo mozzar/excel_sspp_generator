@@ -15,7 +15,7 @@ loc = input("Podaj nazwę pliku .xlsx wraz z rozszerzeniem: ")
 
 wb = xlrd.open_workbook(loc)
 sheet = wb.sheet_by_index(0)
-
+#test
 rows = sheet.nrows #ilosc wierszy
 columns = sheet.ncols #ilosc kolumn
 
